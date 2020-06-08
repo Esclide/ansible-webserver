@@ -9,8 +9,6 @@
 - name: Nginx installation
   hosts: servers
   become: true
-  vars_files:
-    - roles/nginx/vars/default.yml
   gather_facts: no
   roles:
     - nginx
@@ -20,8 +18,6 @@
 - name: Database installation
   hosts: servers
   become: true
-  vars_files:
-    - roles/database/vars/default.yml
   gather_facts: no
   roles:
     - database
