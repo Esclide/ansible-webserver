@@ -1,0 +1,6 @@
+create_containers: 1
+default_container_name: postgres_docker
+default_container_image: postgres
+postgres_docker_env:
+  POSTGRES_PASSWORD: Pa$$w0rd
+  POSTGRES_USER: Annete

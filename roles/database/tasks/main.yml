@@ -1,0 +1,17 @@
+---
+- name: Pull default Docker image
+  docker_image:
+    name: "{{ default_container_image }}"
+    source: pull
+    # Creates the number of containers defined by the variable create_containers, using values from vars file
+
+- name: Remove the containers if they actually exist
+  shell: 'docker stop "{{ default_container_name }}" && docker rm -fv "{{ default_container_name }}"'
+  ignore_errors: yes
+
+- name: Create default containers
+  docker_container:
+    name: "{{ default_container_name }}"
+    image: "{{ default_container_image }}"
+    env: "{{ postgres_docker_env if postgres_docker_env else omit }}"
+    state: started

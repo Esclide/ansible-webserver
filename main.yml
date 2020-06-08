@@ -1,0 +1,29 @@
+---
+- name: Docker installation
+  hosts: servers
+  gather_facts: no
+  become: yes
+  roles:
+    - docker
+
+- name: Nginx installation
+  hosts: servers
+  become: true
+  vars_files:
+    - roles/nginx/vars/default.yml
+  gather_facts: no
+  roles:
+    - nginx
+  tags:
+    - nginxinstall
+
+- name: Database installation
+  hosts: servers
+  become: true
+  vars_files:
+    - roles/database/vars/default.yml
+  gather_facts: no
+  roles:
+    - database
+  tags:
+    - postgresinstall
